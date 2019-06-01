@@ -2,6 +2,7 @@
 <includes>
     <include name="View_Posters">
         <definition>
+            <include condition="!Skin.HasSetting(DisableViewMode.BigPostersMod) + [Window.IsVisible(MyPrograms.xml) | Window.IsVisible(MyVideoNav.xml) | Window.IsVisible(MyGames.xml)]">View_Posters_BigPostersMod</include>
             <include condition="!Skin.HasSetting(DisableViewMode.PosterWall) + [Window.IsVisible(MyPrograms.xml) | Window.IsVisible(MyVideoNav.xml) | Window.IsVisible(MyGames.xml)]">View_Posters_Wall</include>
             <include condition="!Skin.HasSetting(DisableViewMode.LandscapeWall) + [Window.IsVisible(MyPrograms.xml) | Window.IsVisible(MyVideoNav.xml) | Window.IsVisible(MyMusicNav.xml) | Window.IsVisible(MyPics.xml) | Window.IsVisible(MyGames.xml)]">View_Posters_LandscapeWall</include>
             <include condition="Window.IsVisible(MyPrograms.xml) | Window.IsVisible(MyVideoNav.xml) | Window.IsVisible(MyMusicNav.xml) | Window.IsVisible(MyPics.xml) | Window.IsVisible(MyPrograms.xml) | Window.IsVisible(AddonBrowser.xml) | Window.IsVisible(MyGames.xml)">View_Posters_SquareWall</include>
@@ -39,6 +40,152 @@
                     </include>
                 </control>
             </control>
+        </control>
+    </include>
+
+    <!-- new layout -->
+    <include name="View_Posters_BigPostersMod">
+        <control type="group">
+            <visible>Control.IsVisible(510)</visible>
+            <control type="group">
+                <include>View_Pad</include>
+                <control type="wraplist" id="510">
+                    <top>-10</top>
+                    <height>920</height>
+                    <right>-70</right>
+                    <left>-70</left>
+                    <preloaditems>2</preloaditems>
+                    <height>poster_height</height>
+                    <focusposition>0</focusposition>
+                    <movement>0</movement>
+                    <viewtype label="$LOCALIZE[31363]">icon</viewtype>
+                    <include>View_Movement_Vertical</include>
+                    <pagecontrol>60</pagecontrol>
+                    <onleft>510</onleft>
+                    <onright>510</onright>
+                    <include content="View_Forced">
+                        <param name="string" value="$LOCALIZE[31363]" />
+                    </include>
+                    <visible>Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | $EXP[Exp_IsPluginAdvancedLauncher]</visible>
+                    <include>View_NotTheseWindows</include>
+                    <include content="View_Posters_Layout">
+                        <param name="id" value="510" />
+                        <param name="orientation" value="horizontal" />
+                        <param name="posters_big" default="true" />
+                    </include>
+                </control>
+                <control type="group">
+                    <!-- Display Logo -->
+                    <control type="image" id="55446">
+                        <top>25</top>
+                        <left>655</left>
+                        <height>189</height>
+                        <width>479</width>
+                        <aligny>top</aligny>
+                        <texture background="true">$VAR[Image_ClearLogo]</texture>
+                        <animation effect="fade" start="0" end="100" time="500">Visible</animation>
+                        <visible>!Control.HasFocus(300) + !Control.HasFocus(302) + !Control.HasFocus(30222) + !Control.HasFocus(660)</visible>
+                    </control>
+                    
+                    <!-- display plot-->
+                    <control type="group">
+                        <left>1175</left>
+                        <height>170</height>
+                        <top>30</top>
+                        <control type="textbox">
+                            <label fallback="19055">$VAR[Label_Plot]</label>
+                            <height>$PARAM[plot_height]</height>
+                            <aligny>top</aligny>
+                            <textcolor>main_fg_70</textcolor>
+                            <font>font_plotbox</font>
+                        </control>
+                    </control>
+
+                    <!-- display tagline-->
+                    <control type="group">
+                        <left>1175</left>
+                        <height>50</height>
+                        <top>-20</top>
+                        <control type="textbox">
+                            <label fallback="19055">[I]"$VAR[Label_Tagline]"[/I]</label>
+                            <aligny>top</aligny>
+                            <textcolor>white</textcolor>
+                            <font>font_plotbox</font>
+                        </control>
+                    </control>
+
+                    <!-- display media info-->
+                    <control type="group">
+                        
+                        <left>1235</left>
+                        <top>840</top>
+                        <height>230</height>
+                        <control type="label">
+                            <width>auto</width>
+                            <label>$VAR[Label_ShowCase_InfoLine]</label>
+                            <height>40</height>
+                            <aligny>top</aligny>
+                            <textcolor>$VAR[ColorHighlight]</textcolor>
+                            <font>font_small</font>
+                        </control>
+                    </control>
+
+                    <!-- display media flags-->
+                    <control type="group">
+                        <left>640</left>
+                        <right>-40</right>
+                        <height>80</height>
+                        <bottom>view_pad</bottom>
+                        <include content="Object_Flags">
+                            <param name="container" value="" />
+                            <param name="directory" value="color" />
+                            <param name="align" value="left" />
+                        </include>
+                    </control>
+
+                    <!-- display ratings-->
+                    <control type="group">
+                        <left>650</left>
+                        <top>175</top>
+                        <height>230</height>
+                        <control type="group">
+                            <height>80</height>
+                            <left>0</left>
+                            <right>0</right>
+                            <control type="group">                    
+                                <control type="group">
+                                    <left>510</left>
+                                    <include>Object_StarRating</include>
+                                    <visible>String.IsEmpty(ListItem.UserRating)</visible>
+                                    <visible>!Skin.HasSetting(DisableStarRating)</visible>
+                                </control>
+                                <control type="group">
+                                    <top>45</top>
+                                    <width>$PARAM[width]</width>
+                                    <animation effect="slide" end="-256" condition="Skin.HasSetting(DisableStarRating)">Conditional</animation>
+                                    <include content="Object_Ratings">
+                                        <param name="directory" value="monochrome" />
+                                        <param name="align" value="right" />
+                                        <param name="width" value="700" />
+                                        <param name="rottentomatoes" value="true" />
+                                        <param name="imdbvotes" value="false" />
+                                        <param name="usermeter" value="false" />
+                                        <param name="imdb" value="true" />
+                                        <param name="tmdb" value="true" />
+                                        <param name="metacritic" value="true" />
+                                        <param name="oscars" value="true" />
+                                        <param name="top250" value="false" />
+                                        <param name="plot" value="false" />
+                                        <param name="studio" value="false" />
+                                    </include>
+                                </control>
+                            </control>
+                        </control>
+                    </control>
+                    
+                </control>
+            </control>
+            <include>View_Library_Poster</include>
         </control>
     </include>
 

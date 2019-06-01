@@ -44,6 +44,16 @@
                 <orientation>vertical</orientation>
                 <pagecontrol>60</pagecontrol>
                 <usecontrolcoords>true</usecontrolcoords>
+                <!-- show new skin in toggle menu -->
+                <control type="radiobutton" id="9012" description="Big Posters Extended">
+                    <label>$LOCALIZE[31412]</label>
+                    <radioposx>630</radioposx>
+                    <include>Dialog_Standard_ListButton</include>
+                    <onclick>Skin.ToggleSetting(DisableViewMode.BigPostersMod)</onclick>
+                    <selected>!Skin.HasSetting(DisableViewMode.BigPostersMod)</selected>
+                    <onfocus>SetProperty(Image_Preview,special://skin/extras/backgrounds/viewmodes/bigpostersmod.jpg)</onfocus>
+                </control>
+                <!-- -->
                 <control type="radiobutton" id="9001" description="Media Info">
                     <label>$LOCALIZE[31298]</label>
                     <radioposx>630</radioposx>
