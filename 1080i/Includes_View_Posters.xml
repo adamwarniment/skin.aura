@@ -54,11 +54,11 @@
           <onup>SetFocus(5022,0,absolute)</onup>
           <ondown>SetFocus(5022,0,absolute)</ondown>
           <height>700</height>
-          <width>815</width>
-          <top>635</top>
-          <left>-230</left>
+          <width>575</width>
+          <top>550</top>
+          <left>-30</left>
           <visible>Container.Content(seasons)</visible>
-          <preloaditems>3</preloaditems>
+          <preloaditems>2</preloaditems>
           <focusposition>1</focusposition>
           <movement>0</movement>
           <include>View_NotTheseWindows</include>
@@ -72,6 +72,7 @@
             <param name="id" value="511" />
             <param name="orientation" value="horizontal" />
             <param name="posters_mid" default="true" />
+            <param name="text" default="false" />
           </include>
         </control>
         <control type="group" id="25022">
@@ -95,7 +96,7 @@
           <focusposition>3</focusposition>
           <orientation>vertical</orientation>
           <height>920</height>
-	        <left>50</left>
+	      <left>50</left>
           <top>50</top>
           <preloaditems>2</preloaditems>
           <scrolltime tween="quadratic">400</scrolltime>
@@ -103,7 +104,6 @@
           <onleft>511</onleft>
           <onright>SetFocus(511,2)</onright>
           <onright>511</onright>
-          
           <itemlayout width="1820" height="310">
             <control type="group">
               <left>550</left>
@@ -1009,7 +1009,7 @@
                 </control>
             </focusedlayout>
             <!-- new mini poster focus-->
-            <focusedlayout width="400" condition="$PARAM[posters_mid]">
+            <focusedlayout width="1" condition="$PARAM[posters_mid]">
                 <control type="group">
                 <left>view_pad</left>
                 <right>-view_pad</right>
