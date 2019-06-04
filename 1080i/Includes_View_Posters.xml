@@ -62,10 +62,10 @@
           <focusposition>1</focusposition>
           <movement>0</movement>
           <include>View_NotTheseWindows</include>
-          <viewtype label="$LOCALIZE[31468]">icon</viewtype>
+          <viewtype label="$LOCALIZE[31415]">icon</viewtype>
           <include>Animation_FocusBounce_Small</include>
           <include content="View_Forced">
-            <param name="string" value="$LOCALIZE[31468]" />
+            <param name="string" value="$LOCALIZE[31415]" />
           </include>
           <!-- display season covers-->
           <include content="View_Posters_Layout">
@@ -345,13 +345,13 @@
                     <height>poster_height</height>
                     <focusposition>0</focusposition>
                     <movement>0</movement>
-                    <viewtype label="$LOCALIZE[31363]">icon</viewtype>
+                    <viewtype label="$LOCALIZE[31413]">icon</viewtype>
                     <include>View_Movement_Vertical</include>
                     <pagecontrol>60</pagecontrol>
                     <onleft>510</onleft>
                     <onright>510</onright>
                     <include content="View_Forced">
-                        <param name="string" value="$LOCALIZE[31363]" />
+                        <param name="string" value="$LOCALIZE[31413]" />
                     </include>
                     <visible>Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | $EXP[Exp_IsPluginAdvancedLauncher]</visible>
                     <include>View_NotTheseWindows</include>
