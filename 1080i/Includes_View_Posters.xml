@@ -45,7 +45,7 @@
         </control>
     </include>
 
-    <include name="View_Posters_Wall_Half"
+    <include name="View_Posters_Wall_Half">
         <control type="group">
             <visible>Control.IsVisible(512)</visible>
             <control type="group">
