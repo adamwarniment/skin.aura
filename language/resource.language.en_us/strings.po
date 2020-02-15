@@ -1983,3 +1983,8 @@ msgstr "Season/Episode Mix"
 msgctxt "#31415"
 msgid "Season/Episode Mix"
 msgstr "Season/Episode Mix"
+
+#: /1080i/Includes_View_Posters.xml
+msgctxt "#31416"
+msgid "Half Poster Wall"
+msgstr "Half Poster Wall"

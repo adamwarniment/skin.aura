@@ -2,8 +2,9 @@
 <includes>
     <include name="View_Posters">
         <definition>
-            <include condition="!Skin.HasSetting(DisableViewMode.BigPostersMod) + [Window.IsVisible(MyPrograms.xml) | Window.IsVisible(MyVideoNav.xml) | Window.IsVisible(MyGames.xml)]">View_Posters_tvShowMix</include>
+            <include condition="!Skin.HasSetting(DisableViewMode.tvShowMix) + [Window.IsVisible(MyPrograms.xml) | Window.IsVisible(MyVideoNav.xml) | Window.IsVisible(MyGames.xml)]">View_Posters_tvShowMix</include>
             <include condition="!Skin.HasSetting(DisableViewMode.BigPostersMod) + [Window.IsVisible(MyPrograms.xml) | Window.IsVisible(MyVideoNav.xml) | Window.IsVisible(MyGames.xml)]">View_Posters_BigPostersMod</include>
+            <include condition="!Skin.HasSetting(DisableViewMode.HalfPosterWall) + [Window.IsVisible(MyPrograms.xml) | Window.IsVisible(MyVideoNav.xml) | Window.IsVisible(MyGames.xml)]">View_Posters_Wall_Half</include>
             <include condition="!Skin.HasSetting(DisableViewMode.PosterWall) + [Window.IsVisible(MyPrograms.xml) | Window.IsVisible(MyVideoNav.xml) | Window.IsVisible(MyGames.xml)]">View_Posters_Wall</include>
             <include condition="!Skin.HasSetting(DisableViewMode.LandscapeWall) + [Window.IsVisible(MyPrograms.xml) | Window.IsVisible(MyVideoNav.xml) | Window.IsVisible(MyMusicNav.xml) | Window.IsVisible(MyPics.xml) | Window.IsVisible(MyGames.xml)]">View_Posters_LandscapeWall</include>
             <include condition="Window.IsVisible(MyPrograms.xml) | Window.IsVisible(MyVideoNav.xml) | Window.IsVisible(MyMusicNav.xml) | Window.IsVisible(MyPics.xml) | Window.IsVisible(MyPrograms.xml) | Window.IsVisible(AddonBrowser.xml) | Window.IsVisible(MyGames.xml)">View_Posters_SquareWall</include>
@@ -36,6 +37,34 @@
                     </include>
                     <include content="View_Posters_Layout">
                         <param name="id" value="51" />
+                        <param name="orientation" value="vertical" />
+                        <param name="posters" default="true" />
+                    </include>
+                </control>
+            </control>
+        </control>
+    </include>
+
+    <include name="View_Posters_Wall_Half"
+        <control type="group">
+            <visible>Control.IsVisible(512)</visible>
+            <control type="group">
+                <include>View_Pad</include>
+                <control type="panel" id="512">
+                    <left>455</left> <!-- -70 -->
+                    <right>-10</right>
+                    <bottom>-10</bottom>
+                    <top>-10</top>
+                    <width>1400</width>
+                    <visible>Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(actors) | $EXP[Exp_IsPluginAdvancedLauncher]</visible>
+                    <pagecontrol>60</pagecontrol>
+                    <include>View_NotTheseWindows</include>
+                    <viewtype label="$LOCALIZE[31416]">icon</viewtype>
+                    <include content="View_Forced">
+                        <param name="string" value="$LOCALIZE[31416]" />
+                    </include>
+                    <include content="View_Posters_Layout">
+                        <param name="id" value="512" />
                         <param name="orientation" value="vertical" />
                         <param name="posters" default="true" />
                     </include>
@@ -930,6 +959,7 @@
         <param name="banner" default="false" />
         <param name="submenu" default="false" />
         <param name="text" default="true" />
+        <param name="halfScreen" default="false" />
         <definition>
             <focusposition>3</focusposition>
             <movement>3</movement>
